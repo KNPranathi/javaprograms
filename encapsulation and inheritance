@@ -1,0 +1,22 @@
+  class Employee{
+  private int salary =50000;
+  public int getSalary(){
+  return salary;
+  }
+  }
+  class Manager extends Employee{
+  string name = "rahul";
+  void display(){
+  System.out.println("Manager Name:", +name);
+  System.out.println("Salary: ", +getSalary());
+   }
+   }
+   public class main{
+   public static void main(String[] args){
+   manager m1=new Manager();
+   m1.display();
+   }
+   }
+   
+  
+  
