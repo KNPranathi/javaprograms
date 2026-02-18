@@ -1,0 +1,27 @@
+public class StudentGrade{
+public static void main(String[] args){
+String[]names={"Anu","Rahul","Dev","kiran","Sneha"};
+int[]marks={85,72,95,60,50};
+for(int i=0,i<names.length;i++){
+char grade;
+if(marks[i]>=90){
+grade='A';
+}
+else if(marks[i]>=75){
+grade='B';
+}
+else if(marks[i]>=60){
+grade='C';
+}
+else if(marks[i]>=50){
+grade='D';
+}else{grade='F';
+}
+System.out.println("Name:"+names[i]);
+System.out.println("Marks:"+marks[i]);
+System.out.println("Grade:"+grade[i]);
+System.out.println("-----------");
+}
+}
+}
+
