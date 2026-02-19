@@ -1,0 +1,116 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+class DuplicateContactException extends Exception {
+public DuplicateContactException(String msg) {
+super(msg);
+ }
+}
+class Contact {
+ String name;
+ String phone;
+ Contact(String name, String phone) {
+ this.name = name;
+this.phone = phone;
+ }
+public String toString() {
+return "Name: " + name + ", Phone: " + phone;
+}
+}
+class ContactBook {
+ArrayList<Contact> contacts = new ArrayList<>();
+ void addContact(String name, String phone) throws DuplicateContactException {
+if (contacts.size() >= 10) {
+ System.out.println("Contact Book Full! Cannot add more than 10 contacts.");
+  return;
+}
+ for (Contact c : contacts) {
+  if (c.phone.equals(phone)) {
+   throw new DuplicateContactException("Error: Duplicate contact! Phone number already exists.");
+   }
+   }
+ contacts.add(new Contact(name, phone));
+System.out.println("Contact Added Successfully!");
+ void searchContact(String phone) {
+ for (Contact c : contacts) {
+   if (c.phone.equals(phone)) {
+ System.out.println("Contact Found: " + c);
+  return;
+  }
+  }
+  System.out.println("Contact Not Found!");
+  }
+    void deleteContact(String phone) {
+    for (Contact c : contacts) {
+     if (c.phone.equals(phone)) {
+    contacts.remove(c);
+    System.out.println("Contact Deleted Successfully!");
+    return;
+   }
+   }
+   System.out.println("Contact Not Found!");
+    } 
+    void displayContacts() {
+    if (contacts.isEmpty()) {
+    System.out.println("No Contacts Available!");
+     } else {
+     System.out.println("\n--- Contact List ---");
+     for (Contact c : contacts) {
+     System.out.println(c);
+      }
+      }
+    }
+}
+
+public class ContactBookApp {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+ContactBook book = new ContactBook();
+ while (true) {
+System.out.println("\n===== CONTACT BOOK MENU =====");
+System.out.println("1. Add Contact")
+System.out.println("2. Search Contact");
+System.out.println("3. Delete Contact");
+System.out.println("4. Display All Contacts");
+System.out.println("5. Exit");
+
+System.out.print("Enter your choice: ");
+int choice = sc.nextInt();
+sc.nextLine(); 
+switch (choice) {
+case 1:
+try {
+System.out.print("Enter Name: ");
+String name = sc.nextLine();
+System.out.print("Enter Phone Number: ");
+String phone = sc.nextLine();
+book.addContact(name, phone);
+} 
+catch (DuplicateContactException e) {
+System.out.println(e.getMessage());
+}
+break;
+case 2:
+System.out.print("Enter Phone Number to Search: ");
+String searchPhone = sc.nextLine();
+ book.searchContact(searchPhone);
+ break;
+case 3:
+System.out.print("Enter Phone Number to Delete: ");
+String deletePhone = sc.nextLine();
+book.deleteContact(deletePhone);
+break;
+case 4:
+book.displayContacts();
+break;
+case 5:
+System.out.println("Exiting Contact Book... Thank You!");
+sc.close();
+System.exit(0);
+ default:
+ System.out.println("Invalid Choice! Try again.");
+ }
+ }
+}
+}
+
+        
